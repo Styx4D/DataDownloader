@@ -1,0 +1,9 @@
+[general]
+name=DataDownloader
+qgisMinimumVersion=3.0
+description=Téléchargement de données depuis les serveurs IGN, BRGM et Copernicus
+about=Plugin de téléchargement par Styx (https://www.styx4d.com/). Permet le téléchargement de données vecteur et raster depuis les serveurs de l’IGN (MNS, MNT, MNH disponibles ainsi que toutes les données vectorielles libres), des données géologiques du BRGM et des images Sentinel-2 de Copernicus (compte nécessaire).
+version=1.0
+author=Baratier
+email=alexandre.baratier@styx4d.com
+repository=https://github.com/Styx4D

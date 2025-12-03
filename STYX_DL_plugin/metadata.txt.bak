@@ -1,0 +1,9 @@
+[general]
+name=GaletV2
+qgisMinimumVersion=3.0
+description=cailloux
+about=cailloux
+version=1.0
+author=Baratier
+email=alexandre.baratier@styx4d.com
+repository=None
