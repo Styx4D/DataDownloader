@@ -7,3 +7,5 @@ version=1.0
 author=Baratier
 email=alexandre.baratier@styx4d.com
 repository=https://github.com/Styx4D
+tags=MNT,MNS,MNH,lidar,DEM,France,IGN,BRGM,Sentinel
+icon=styx_ico.png
