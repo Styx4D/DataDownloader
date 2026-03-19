@@ -325,21 +325,30 @@ class DownloadWorker(QThread):
             self.log_signal.emit('Couche ajoutée à QGIS.')
         else:
             self.log_signal.emit('Construction du VRT…')
+            # Get CRS from the first raster in the list
+            first_layer = QgsRasterLayer(saved_raster[0], 'temp')
+            target_crs = first_layer.crs()
+
             vrt_process = processing.run("gdal:buildvirtualraster", {
                 'INPUT': saved_raster,
                 'RESOLUTION': 0,
                 'SEPARATE': False,
                 'PROJ_DIFFERENCE': False,
                 'ADD_ALPHA': False,
-                'ASSIGN_CRS': None,
+                'ASSIGN_CRS': target_crs,
                 'RESAMPLING': 0,
                 'SRC_NODATA': '',
                 'EXTRA': '',
                 'OUTPUT': 'TEMPORARY_OUTPUT'
             })
-            QgsProject.instance().addMapLayer(
-                QgsRasterLayer(vrt_process['OUTPUT'],
-                               os.path.basename(self.save_path).replace('.tif', '')))
+
+            vrt_layer = QgsRasterLayer(
+                vrt_process['OUTPUT'],
+                os.path.basename(self.save_path).replace('.tif', '')
+            )
+
+            vrt_layer.setCrs(target_crs)
+            QgsProject.instance().addMapLayer(vrt_layer)
             self.log_signal.emit('VRT ajouté à QGIS.')
 
         self.finished_signal.emit()
